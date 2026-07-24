@@ -1,0 +1,7 @@
+Business Canvas.pdf
+tmp/
+media/intro/scene-*.png
+media/intro/clip-*.mp4
+media/intro/narration.wav
+__pycache__/
+*.pyc

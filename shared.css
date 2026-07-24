@@ -210,6 +210,46 @@ a { color: inherit; }
 .eco-sticker small { font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
 @keyframes eco-spin { to { transform: rotate(360deg); } }
 
+.eco-video {
+  padding: clamp(82px,7.5vw,108px) clamp(22px,7vw,110px);
+  background: var(--eco-deep);
+  color: white;
+}
+.eco-video-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 38px;
+}
+.eco-video-intro > div { max-width: 780px; }
+.eco-video .eco-section-label { color: var(--eco-mint); }
+.eco-video h2 {
+  margin: 0;
+  font: 800 clamp(38px,5vw,72px)/.98 "Trebuchet MS",sans-serif;
+  letter-spacing: -.055em;
+}
+.eco-video-intro > p {
+  max-width: 430px;
+  margin: 0;
+  color: #c6dfdf;
+  line-height: 1.7;
+}
+.eco-video-frame {
+  overflow: hidden;
+  border: 1px solid rgba(189,232,213,.28);
+  border-radius: 18px;
+  background: #082f35;
+  box-shadow: 0 34px 70px rgba(4,35,39,.28);
+}
+.eco-video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #082f35;
+}
+
 .eco-statement { display: grid; grid-template-columns: .34fr 1fr; gap: 7vw; padding: clamp(82px,7.5vw,108px) clamp(22px,7vw,110px); background: var(--eco-deep); color: white; }
 .eco-statement .eco-section-label { color: var(--eco-mint); }
 .eco-statement h2,.eco-section-head h2,.standard-copy h2,.impact-heading h2,.eco-quote h2 {
@@ -332,6 +372,7 @@ a { color: inherit; }
   .eco-hero,.eco-standard,.eco-quote { grid-template-columns: 1fr; }
   .eco-hero-art { min-height: 520px; }
   .eco-statement { grid-template-columns: 1fr; }
+  .eco-video-intro { align-items: start; flex-direction: column; }
   .cycle-track { grid-template-columns: 1fr 1fr; }
   .customer-grid { grid-template-columns: 1fr; }
   .customer-card { min-height: 330px; }
