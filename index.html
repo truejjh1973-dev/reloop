@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="ReLoop keeps reliable technology in use through secure refurbishment, flexible leasing, and responsible recovery.">
   <title>ReLoop - Circular Devices for Organizations</title>
-  <link rel="stylesheet" href="shared.css?v=3">
+  <link rel="stylesheet" href="shared.css?v=4">
 </head>
 <body class="site eco" data-page="home">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <nav class="eco-nav" aria-label="Main navigation">
     <a class="eco-brand" href="index.html"><span>Re</span>Loop</a>
     <div class="eco-nav-links">
@@ -30,7 +31,7 @@
     </details>
   </nav>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <section class="eco-hero">
       <div class="eco-hero-copy">
         <p class="eco-eyebrow"><span></span> Circular technology for the GTA</p>
@@ -188,10 +189,11 @@
         <p class="eco-section-label">Start your next device cycle</p>
         <h2>Tell us what your organization needs.</h2>
       </div>
-      <form class="quote-form">
+      <form class="quote-form" aria-describedby="quote-form-note">
+        <p class="form-note" id="quote-form-note">Share a few details so we can shape the right device plan for your team.</p>
         <label>
           Organization type
-          <select>
+          <select name="organization-type" required>
             <option>School or education</option>
             <option>Nonprofit or community organization</option>
             <option>Small business</option>
@@ -199,11 +201,13 @@
         </label>
         <label>
           Approximate device quantity
-          <input type="number" min="1" placeholder="e.g. 30">
+          <input type="number" name="device-quantity" min="1" max="500" step="1" inputmode="numeric" placeholder="e.g. 30" required aria-describedby="quantity-help">
+          <small class="form-help" id="quantity-help">An estimate is fine.</small>
         </label>
         <label>
           Work email
-          <input type="email" placeholder="name@organization.ca">
+          <input type="email" name="work-email" autocomplete="email" placeholder="name@organization.ca" required aria-describedby="email-help">
+          <small class="form-help" id="email-help">Use an organization or school email if available.</small>
         </label>
         <button class="eco-button" type="button">Request a Device Plan →</button>
       </form>
