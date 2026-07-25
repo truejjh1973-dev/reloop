@@ -180,6 +180,7 @@ a { color: inherit; }
   font-family: "Trebuchet MS", "Gill Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 .eco a { text-underline-offset: 4px; }
 .eco :is(section[id], #main-content) { scroll-margin-top: calc(var(--eco-nav-height) + 16px); }
@@ -227,13 +228,15 @@ a { color: inherit; }
 .eco-button:disabled { opacity: .6; cursor: not-allowed; }
 .eco-button-small { min-height: 48px; padding: 0 17px; box-shadow: none; }
 .eco-hero {
-  min-height: calc(100vh - var(--eco-nav-height)); display: grid; grid-template-columns: 1.02fr .98fr;
+  min-height: calc(100vh - var(--eco-nav-height)); display: grid; grid-template-columns: minmax(0,1.02fr) minmax(0,.98fr);
   padding: clamp(50px,8vw,110px) clamp(22px,5vw,76px) clamp(60px,8vw,110px);
   gap: clamp(35px,7vw,100px); align-items: center; overflow: hidden;
 }
+.eco-hero > * { min-width: 0; }
 .eco-eyebrow,.eco-section-label { margin: 0 0 20px; color: var(--eco-green); font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
 .eco-eyebrow { display: flex; align-items: center; gap: 10px; }
-.eco-eyebrow span { width: 9px; height: 9px; border-radius: 50%; background: var(--eco-green); box-shadow: 0 0 0 6px rgba(22,140,105,.12); }
+.eco-eyebrow-dot { flex: 0 0 9px; width: 9px; height: 9px; border-radius: 50%; background: var(--eco-green); box-shadow: 0 0 0 6px rgba(22,140,105,.12); }
+.eco-eyebrow-text { min-width: 0; }
 .eco h1 {
   margin: 0; color: var(--eco-deep); font: 900 clamp(58px,7.8vw,116px)/.82 "Trebuchet MS", sans-serif;
   letter-spacing: -.085em;
@@ -484,7 +487,7 @@ a { color: inherit; }
   }
   .eco-mobile-panel a { min-height: 48px; padding: 14px 13px; border-radius: 7px; color: var(--eco-deep); text-decoration: none; font-size: 14px; font-weight: 800; }
   .eco-mobile-panel a:hover,.eco-mobile-panel a:active { background: var(--eco-mint); }
-  .eco-hero,.eco-standard,.eco-quote { grid-template-columns: 1fr; }
+  .eco-hero,.eco-standard,.eco-quote { grid-template-columns: minmax(0,1fr); }
   .eco-hero-art { min-height: 0; margin-top: 12px; }
   .eco-hero-media { width: min(100%,720px); }
   .eco-statement { grid-template-columns: 1fr; }
@@ -495,8 +498,21 @@ a { color: inherit; }
   .eco-section-head,.impact-heading { align-items: start; flex-direction: column; }
 }
 @media (max-width: 560px) {
+  .eco-hero { padding-right: 20px; padding-left: 20px; }
+  .eco h1 {
+    max-width: 100%;
+    font-size: clamp(48px,15vw,56px);
+    line-height: .85;
+    letter-spacing: -.075em;
+  }
+  .eco-eyebrow { align-items: flex-start; gap: 8px; font-size: 10px; line-height: 1.45; letter-spacing: .12em; }
+  .eco-eyebrow-dot { margin-top: .25em; }
+  .eco-eyebrow-text { overflow-wrap: break-word; }
+  .eco-lead { max-width: 100%; overflow-wrap: break-word; }
+  .eco-actions,.eco-actions .eco-button { width: 100%; }
+  .eco-proof > span { min-width: 0; }
   .eco-hero-art { min-height: 0; }
-  .eco-hero-media { padding: 6px; border-radius: 20px 20px 58px 20px; }
+  .eco-hero-media { width: 100%; max-width: 100%; padding: 6px; border-radius: 20px 20px 58px 20px; }
   .eco-hero-video { border-radius: 15px 15px 52px 15px; }
   .eco-hero-video-toggle { right: 14px; bottom: 14px; min-height: 42px; padding: 0 12px; }
   .eco-sticker { width: 96px; height: 96px; font-size: 14px; }
@@ -505,4 +521,24 @@ a { color: inherit; }
   .eco-numbers div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(22,58,66,.4); }
   .quote-form label,.quote-form label:first-of-type { grid-column: 1; }
   .eco-footer { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 360px) {
+  .eco-nav { padding-right: 18px; padding-left: 18px; }
+  .eco-hero { padding-right: 18px; padding-left: 18px; }
+  .eco h1 { font-size: clamp(44px,15vw,52px); }
+  .eco-hero-video-toggle {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+  .eco-hero-video-toggle b {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
